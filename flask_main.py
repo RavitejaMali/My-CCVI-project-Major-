@@ -353,8 +353,8 @@ def preprocessed():
     
 
 if __name__ == "__main__":
-    #url="http://localhost:5000/"
-    url = "https://www.google.com"
+    url="http://localhost:5000/"
+    #url = "https://www.google.com"
     webbrowser.open(url)
     app.run(host="localhost", port=5000, debug=False) 
     
