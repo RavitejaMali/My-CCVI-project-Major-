@@ -3,11 +3,4 @@ flask_cors
 scipy.io
 pandas
 os
-matplotlib.pyplot
-numpy
-tqdm
-sklearn.svm
-sklearn.decomposition
-sklearn.model_selection
-scikitplot
 webbrowser
