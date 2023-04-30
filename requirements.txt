@@ -2,7 +2,8 @@ flask
 flask_cors
 scipy
 sklearn
-pickle
 pandas
-os
-webbrowser
+matplotlib
+numpy
+tqdm
+scikit-plot
