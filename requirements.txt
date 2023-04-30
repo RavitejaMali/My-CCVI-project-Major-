@@ -1,6 +1,8 @@
 flask
 flask_cors
-scipy.io
+scipy
+sklearn
+pickle
 pandas
 os
 webbrowser
