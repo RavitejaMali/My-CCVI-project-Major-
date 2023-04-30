@@ -1,0 +1,117 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Classification and Vegetation Indices</title>
+
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="static/css/styles.css">
+
+
+</head>
+
+<body>
+
+    <!-- As a heading -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Crop Classification and Vegetation Indices</a>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+
+    <div class="container">
+
+        <form action="\preprocessed" method="post">
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Satellite Image</h5>
+						  	<label for="myfile">Insert Dataset File:</label>
+                            <input type="file" id="myfile_dt" name="myfile_dt"><br><br>
+                            <label for="myfile">Insert Ground Truth File:</label>
+                            <input type="file" id="myfile_gt" name="myfile_gt"><br><br>
+  					  	
+						  	Submit :- <input type="submit" value="Submit", name="submit_button_1"> 
+                            <br>
+                                                     
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Visualization Files</h5>
+                            <p> Shape of Satellite Image File    :- {{ a }} </p>
+                            <p> Shape of Ground Truth File       :- {{ b }} </p>
+                            <p> Sample Band Visualization File   :- {{ c }} </p>
+                            <p> {{ d }} </p>
+                            <br>
+                            
+                            <h5 class="card-title">Calculation of Vegetation Indices</h5>
+                            <p> {{ i }} </p>
+                            <p> {{ j }} </p>
+                            <p> {{ k }} </p>
+                            <p> {{ l }} </p>
+                            <p> {{ m }} </p>
+                            <p> {{ n }} </p>
+                            <p> {{ o }} </p>
+                            <br>
+                            
+                            <h5 class="card-title">Spectral Plot of Band</h5>
+                            <p> {{ p }} </p>
+                            
+                            <h5 class="card-title">Principal Component Analysis</h5>
+                            <p> {{ q }} </p>
+                            <br>
+                            
+                            <h5 class="card-title">SVM Classification of Crop</h5>
+                            <p> {{ r }} </p>
+                            <p> {{ s }} </p> 
+                            <p> {{ t }} </p>
+                            <p> {{ u }} </p>
+                            <p> {{ x }} </p>
+                            <p> {{ y }} </p>
+                            <br>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
