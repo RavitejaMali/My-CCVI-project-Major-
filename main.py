@@ -21,8 +21,7 @@ import scikitplot as skplt
 import webbrowser
 import boto3
 from io import BytesIO
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+
 
 
 def plot_band(dataset):
