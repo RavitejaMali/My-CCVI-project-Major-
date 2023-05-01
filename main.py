@@ -19,6 +19,10 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 import scikitplot as skplt
 import webbrowser
+import boto3
+from io import BytesIO
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 
 def plot_band(dataset):
@@ -30,11 +34,14 @@ def plot_band(dataset):
     plt.colorbar()
     #plt.plot(dataset[:,:, band_no], cmap='jet')
     #plt.show()
-    plt.savefig(UPLOAD_FOLDER + "/output/band.png")
+    #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
     #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
 
     #New Line start
-    plt.savefig(s3.upload_file(os.path.join(app.config['OUTPUT_FOLDER'], 'output_image.png'), BUCKET_NAME, 'output_image.png'))
+    with BytesIO() as output:
+     plt.savefig(output,format='PNG')
+     output.seek(0)
+     s3.put_object(Bucket=BUCKET_NAME, key=os.path.join(OUTPUT_FOLDER, 'Band.png'), Body=output.getvalue())
     #new code end
 
     return band_no
@@ -155,8 +162,13 @@ UPLOAD_FOLDER = os.path.join('data')
 app = Flask(__name__,  template_folder='template')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Trail Code Here
 
+s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
+                  aws_secret_access_key='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')
 
+BUCKET_NAME='ccvioutputfolder'
+OUTPUT_FOLDER='output'
 
 
 @app.route("/")
