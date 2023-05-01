@@ -7,3 +7,4 @@ matplotlib
 numpy
 tqdm
 scikit-plot
+boto3
