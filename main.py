@@ -20,6 +20,7 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 import scikitplot as skplt
 import webbrowser
+import boto3
 
 
 def plot_band(dataset):
@@ -31,7 +32,12 @@ def plot_band(dataset):
     plt.colorbar()
     #plt.plot(dataset[:,:, band_no], cmap='jet')
     #plt.show()
-    plt.savefig(UPLOAD_FOLDER + "/output/band.png")
+    #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
+    
+    #New Line start
+    plt.savefig(s3.upload_file(os.path.join(app.config['OUTPUT_FOLDER'], 'output_image.png'), BUCKET_NAME, 'output_image.png'))
+    #new code end
+    
     return band_no
 
 def plot_rgb(Red_B4, Green_B3, Blue_B2, NIR_B5):
@@ -172,6 +178,19 @@ current_dir = os.getcwd()
 UPLOAD_FOLDER = os.path.join('data')
 app = Flask(__name__,  template_folder='template')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+# New Lines of code
+OUTPUT_FOLDER = 'output'
+app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
+
+BUCKET_NAME = 'ccvidataset'
+s3 = boto3.client('s3')
+# New lines of code
+
+
+
+
 @app.route("/")
 @cross_origin()
 def home():
