@@ -35,7 +35,7 @@ def plot_band(dataset):
     #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
     
     #New Line start
-    plt.savefig(s3.upload_file(os.path.join(app.config['OUTPUT_FOLDER'], 'output_image.png'), BUCKET_NAME, 'output_image.png'))
+    #plt.savefig(s3.upload_file(os.path.join(app.config['OUTPUT_FOLDER'], 'output_image.png'), BUCKET_NAME, 'output_image.png'))
     #new code end
     
     return band_no
@@ -75,7 +75,7 @@ def plot_rgb(Red_B4, Green_B3, Blue_B2, NIR_B5):
     ax2.set_title("Green")
     ax3.set_title("Blue")
     ax4.set_title("Nir")
-    fig.savefig(UPLOAD_FOLDER + "/output/band_RGB.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/band_RGB.png")
 
 def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     ### Normalized Difference Vegetation Index  (NDVI)
@@ -112,7 +112,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_ndvi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/NDVI_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/NDVI_Indices.png")
 
     # GNDVI
     out_gndvi = gndvi(NIR_B8, Green_B3)
@@ -121,7 +121,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_gndvi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/GNDVI_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/GNDVI_Indices.png")
 
     out_redge = red_edge(NIR_B6, NIR_B5)
 
@@ -129,7 +129,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_redge, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/Chorophyll_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/Chorophyll_Indices.png")
 
     out_ndii = ndii(NIR_B8A, SWIR_B11)
 
@@ -137,7 +137,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_ndii, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/NDII_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/NDII_Indices.png")
 
     out_msi = msi(SWIR_B11, NIR_B8A)
 
@@ -145,7 +145,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_msi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/MSI_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/MSI_Indices.png")
 '''# Actual Code
 def plot_signature(df):
     
@@ -170,7 +170,7 @@ def plot_signature(df):
     plt.title(f'Pixel({pixel_no}) signature', fontsize=14)
     plt.xlabel('Band Number', fontsize=14)
     plt.ylabel('Pixel Intensity', fontsize=14)
-    plt.savefig(UPLOAD_FOLDER + "/output/Spectral_plot.png")
+    #plt.savefig(UPLOAD_FOLDER + "/output/Spectral_plot.png")
     return pixel_no
 
 
@@ -178,17 +178,6 @@ current_dir = os.getcwd()
 UPLOAD_FOLDER = os.path.join('data')
 app = Flask(__name__,  template_folder='template')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
-# New Lines of code
-OUTPUT_FOLDER = 'output'
-app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
-
-BUCKET_NAME = 'ccvidataset'
-s3 = boto3.client('s3')
-# New lines of code
-
-
 
 
 @app.route("/")
@@ -292,7 +281,7 @@ def preprocessed():
                 plt.plot(np.cumsum(ev))
                 plt.xlabel('Number of components')
                 plt.ylabel('Cumulative explained variance')
-                plt.savefig(UPLOAD_FOLDER + "/output/PCA_plot.png")
+                #plt.savefig(UPLOAD_FOLDER + "/output/PCA_plot.png")
 
             q = 'Plot of PCA Component is saved in Output Folder'
             X_train, X_test, y_train, y_test, indices_train, indices_test  = train_test_split(principalComponents, y,  range(X.shape[0]), 
@@ -322,7 +311,7 @@ def preprocessed():
             classi = classification_report(y_test,y_pred, output_dict=True)
             print('Classification report:\n',classi)
             df = pd.DataFrame(classi)
-            df.to_csv(UPLOAD_FOLDER + '/output/Classification Report.csv', index=True)
+            #df.to_csv(UPLOAD_FOLDER + '/output/Classification Report.csv', index=True)
             u = 'Classification Report is saved in output folder'
             print('test 4')
             pre = y_pred
@@ -343,7 +332,7 @@ def preprocessed():
                 plt.colorbar()
                 plt.axis('off')
                 plt.title('Classification Map (PCA + SVM)')
-                plt.savefig(UPLOAD_FOLDER + "/output/Predicted_image.png")
+                #plt.savefig(UPLOAD_FOLDER + "/output/Predicted_image.png")
                 #plt.show()
             
             
