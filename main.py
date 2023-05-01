@@ -175,7 +175,6 @@ app = Flask(__name__,  template_folder='template')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 OUTPUT_FOLDER=os.path.join(os.path.expanduser('~'),"Downloads")
-os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 
 @app.route("/")
