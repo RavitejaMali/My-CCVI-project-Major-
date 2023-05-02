@@ -22,14 +22,7 @@ import webbrowser
 import boto3
 import io
 
-#
 
-lambda_client = boto3.client('lambda')
-function_name = 'ServerFunction'
-
-response = lambda_client.get_function_configuration(FunctionName=function_name)
-timeout = response['Timeout']
-print(f"Current timeout value: {timeout}")
 
 
 s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC2C6FFBW4',
