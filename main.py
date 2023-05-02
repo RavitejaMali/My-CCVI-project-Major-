@@ -170,7 +170,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     save_image_to_s3(buf3,'Chorophyll_Indices.png',ccvioutputfolder)
     #end
     
-    fig.savefig(UPLOAD_FOLDER + "/output/Chorophyll_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/Chorophyll_Indices.png")
     out_ndii = ndii(NIR_B8A, SWIR_B11)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_ndii, cmap = 'PiYG')
@@ -184,7 +184,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     
     save_image_to_s3(buf4,'NDII_Indices.png',ccvioutputfolder)
     #end
-    fig.savefig(UPLOAD_FOLDER + "/output/NDII_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/NDII_Indices.png")
     out_msi = msi(SWIR_B11, NIR_B8A)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_msi, cmap = 'PiYG')
@@ -199,7 +199,7 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     save_image_to_s3(buf5,'MSI_Indices.png',ccvioutputfolder)
     #end
     
-    fig.savefig(UPLOAD_FOLDER + "/output/MSI_Indices.png")
+    #fig.savefig(UPLOAD_FOLDER + "/output/MSI_Indices.png")
 '''# Actual Code
 def plot_signature(df):
     
