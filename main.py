@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split
 import scikitplot as skplt
 import webbrowser
 import boto3
-from io import BytesIO
+
 
 
 
@@ -37,10 +37,11 @@ def plot_band(dataset):
     #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
 
     #New Line start
-    with BytesIO() as output:
-     plt.savefig(output,format='PNG')
-     output.seek(0)
-     s3.put_object(Bucket=BUCKET_NAME, key=os.path.join(OUTPUT_FOLDER, 'Band.png'), Body=output.getvalue())
+    buf=io.BytesIO()
+    plt.savefig(buf,format='png')
+    buf.seek(0)
+    
+    save_image_to_s3(buf, 'band.png')
     #new code end
 
     return band_no
@@ -166,8 +167,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
                   aws_secret_access_key='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')
 
-BUCKET_NAME='ccvioutputfolder'
-OUTPUT_FOLDER='output'
+
+def save_image_to_s3(image_data,filename):
+ s3_client.ipload_fileobj(
+  image_data,
+  ccvioutputfolder,
+  filename)
 
 
 @app.route("/")
