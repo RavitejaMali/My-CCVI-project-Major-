@@ -88,7 +88,18 @@ def plot_rgb(Red_B4, Green_B3, Blue_B2, NIR_B5):
     ax2.set_title("Green")
     ax3.set_title("Blue")
     ax4.set_title("Nir")
-    fig.savefig(UPLOAD_FOLDER + "/output/band_RGB.png")
+    
+    #new Lines of code
+    
+    buf=io.BytesIO()
+    plt.savefig(buf,format='png')
+    buf.seek(0)
+    
+    save_image_to_s3(buf,'rgb.png',ccvioutputfolder)
+    
+    
+    #end Here
+    #fig.savefig(UPLOAD_FOLDER + "/output/band_RGB.png")
 def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     ### Normalized Difference Vegetation Index  (NDVI)
     def ndvi(B08, B04):
