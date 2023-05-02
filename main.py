@@ -29,7 +29,7 @@ s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
 
 
 def save_image_to_s3(image_data,filename):
- s3_client.ipload_fileobj(
+ s3.upload_fileobj(
   image_data,
   ccvioutputfolder,
   'filename.png')
