@@ -28,11 +28,11 @@ s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
                   aws_secret_access_key='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')
 
 
-def save_image_to_s3(image_data,filename):
+def save_image_to_s3(image_data,filename,bucket_name):
  s3.upload_fileobj(
   image_data,
-  ccvioutputfolder,
-  'filename.png')
+  bucket_name,
+  filename)
 
 
 
@@ -54,7 +54,7 @@ def plot_band(dataset):
     plt.savefig(buf,format='png')
     buf.seek(0)
     
-    save_image_to_s3(buf, 'band.png')
+    save_image_to_s3(buf, 'band.png', ccvioutputfolder)
     #new code end
 
     return band_no
