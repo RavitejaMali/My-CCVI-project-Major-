@@ -34,7 +34,7 @@ def save_image_to_s3(image_data,filename,bucket_name):
   bucket_name,
   filename)
 
-
+ccvioutputfolder='ccvioutputfolder'
 
 
 def plot_band(dataset):
