@@ -1,31 +1,9 @@
-AWSTemplateFormatVersion: 2010-09-99
-Outputs:
-  ApiGatewayId:
-    Value:
-      Fn::Sub: ${ServerlessHttpApi}
-  ApiGatewayUrl:
-    Value:
-      Fn::Sub: https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/
-  LambdaArn:
-    Value:
-      Fn::GetAtt:
-      - ServerFunction
-      - Arn
-Resources:
-  ServerFunction:
+ServerFunction:
     Properties:
       AutoPublishAlias: live
       Environment:
         Variables:
-          GUNICORN_CMD_ARGS: --bind=0.0.0.0
-          PYTHONUNBUFFERED: "1"
-          UVICORN_HOST: 0.0.0.0
-          ZEET_APP: my-ccvi-project-major
-          ZEET_DEPLOYMENT_ID: 0a8eb56f-e050-4789-ac79-893eb661a51d
-          ZEET_ENVIRONMENT: Demo
-          ZEET_PROJECT: CCVI
-          ZEET_SERVERLESS_ENTRYPOINT: python3 main.py
-          ZEET_SERVERLESS_PORT: "5000"
+          # other environment variables
       Events:
         CatchAll:
           Properties:
@@ -35,7 +13,6 @@ Resources:
       ImageUri: 649177576069.dkr.ecr.us-west-2.amazonaws.com/zeet/lambda:53004e3c-0e7b-48b6-8cf6-5eb75610729e-0a8eb56f-e050-4789-ac79-893eb661a51d
       MemorySize: 1000
       PackageType: Image
-      Timeout: 120
+      Timeout: 120 # increase timeout to 120 seconds
       VersionDescription: 0a8eb56f-e050-4789-ac79-893eb661a51d
     Type: AWS::Serverless::Function
-Transform: AWS::Serverless-2016-10-31
