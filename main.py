@@ -48,7 +48,6 @@ def plot_band(dataset):
     #plt.show()
     #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
     #plt.savefig(UPLOAD_FOLDER + "/output/band.png")
-
     #New Line start
     buf=io.BytesIO()
     plt.savefig(buf,format='png')
@@ -130,31 +129,76 @@ def vege_indices(NIR_B8, Red_B4, Green_B3, NIR_B6, NIR_B5, NIR_B8A, SWIR_B11):
     img = ax.imshow(out_ndvi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/NDVI_Indices.png")
+    
+    #new code
+    buf1=io.BytesIO()
+    plt.savefig(buf1,format='png')
+    buf1.seek(0)
+    
+    save_image_to_s3(buf1,'NDVI_Indices.png',ccvioutputfolder)
+    #end
+    
+    
+    #fig.savefig(UPLOAD_FOLDER + "/output/NDVI_Indices.png")
     # GNDVI
     out_gndvi = gndvi(NIR_B8, Green_B3)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_gndvi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
-    fig.savefig(UPLOAD_FOLDER + "/output/GNDVI_Indices.png")
+    
+    #new code
+    buf2=io.BytesIO()
+    plt.savefig(buf2,format='png')
+    buf2.seek(0)
+    
+    save_image_to_s3(buf2,'GNDVI_Indices.png',ccvioutputfolder)
+    #end
+    
+    #fig.savefig(UPLOAD_FOLDER + "/output/GNDVI_Indices.png")
     out_redge = red_edge(NIR_B6, NIR_B5)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_redge, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
+    
+    #new code
+    buf3=io.BytesIO()
+    plt.savefig(buf3,format='png')
+    buf3.seek(0)
+    
+    save_image_to_s3(buf3,'Chorophyll_Indices.png',ccvioutputfolder)
+    #end
+    
     fig.savefig(UPLOAD_FOLDER + "/output/Chorophyll_Indices.png")
     out_ndii = ndii(NIR_B8A, SWIR_B11)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_ndii, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
+    
+    #new code
+    buf4=io.BytesIO()
+    plt.savefig(buf4,format='png')
+    buf4.seek(0)
+    
+    save_image_to_s3(buf4,'NDII_Indices.png',ccvioutputfolder)
+    #end
     fig.savefig(UPLOAD_FOLDER + "/output/NDII_Indices.png")
     out_msi = msi(SWIR_B11, NIR_B8A)
     fig, ax = plt.subplots(figsize = (15, 12))
     img = ax.imshow(out_msi, cmap = 'PiYG')
     # img.set_clim(vmin=20, vmax=70)
     fig.colorbar(img, ax = ax)
+    
+    #new code
+    buf5=io.BytesIO()
+    plt.savefig(buf5,format='png')
+    buf5.seek(0)
+    
+    save_image_to_s3(buf5,'MSI_Indices.png',ccvioutputfolder)
+    #end
+    
     fig.savefig(UPLOAD_FOLDER + "/output/MSI_Indices.png")
 '''# Actual Code
 def plot_signature(df):
@@ -179,7 +223,16 @@ def plot_signature(df):
     plt.title(f'Pixel({pixel_no}) signature', fontsize=14)
     plt.xlabel('Band Number', fontsize=14)
     plt.ylabel('Pixel Intensity', fontsize=14)
-    plt.savefig(UPLOAD_FOLDER + "/output/Spectral_plot.png")
+    
+    #new code
+    buf=io.BytesIO()
+    plt.savefig(buf,format='png')
+    buf.seek(0)
+    
+    save_image_to_s3(buf,'Spectral_plot.png',ccvioutputfolder)
+    #end
+    
+    #plt.savefig(UPLOAD_FOLDER + "/output/Spectral_plot.png")
     return pixel_no
 current_dir = os.getcwd()
 UPLOAD_FOLDER = os.path.join('data')
@@ -309,7 +362,7 @@ def preprocessed():
             classi = classification_report(y_test,y_pred, output_dict=True)
             print('Classification report:\n',classi)
             df = pd.DataFrame(classi)
-            df.to_csv(UPLOAD_FOLDER + '/output/Classification Report.csv', index=True)
+            #df.to_csv(UPLOAD_FOLDER + '/output/Classification Report.csv', index=True)
             u = 'Classification Report is saved in output folder'
             print('test 4')
             pre = y_pred
@@ -327,7 +380,16 @@ def preprocessed():
                 plt.colorbar()
                 plt.axis('off')
                 plt.title('Classification Map (PCA + SVM)')
-                plt.savefig(UPLOAD_FOLDER + "/output/Predicted_image.png")
+                #new code
+                buf=io.BytesIO()
+                plt.savefig(buf,format='png')
+                buf.seek(0)
+    
+                save_image_to_s3(buf,'Predicted_Image.png',ccvioutputfolder)
+                #end
+                
+                
+                #plt.savefig(UPLOAD_FOLDER + "/output/Predicted_image.png")
                 #plt.show()
             
             
