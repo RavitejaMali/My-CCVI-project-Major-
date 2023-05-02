@@ -1,0 +1,3 @@
+deployment:
+  default:
+    timeout: 120
