@@ -346,10 +346,11 @@ def preprocessed():
             print(y_test.shape)
             svm = SVC(kernel='rbf', degree = 10, gamma='scale', cache_size=1024*7)
             print('Test 1')
-            svm.fit(X_train, y_train)
+            #svm.fit(X_train, y_train)
             print('Test 2')
-            y_pred = svm.predict(X_test)
+            #y_pred = svm.predict(X_test)
             r = 'Crop Classification Model is Started'
+            '''
             from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
             print(f'Accuracy: {accuracy_score(y_test, y_pred)}%')
             acc = accuracy_score(y_test, y_pred) * 100
@@ -395,7 +396,8 @@ def preprocessed():
             
             
             # Trail code 
-            '''def prdict(clmap):
+            
+            def prdict(clmap):
                clmap_arr = np.array(clmap)
                height, width = clmap_arr.shape[:2]
                plt.figure(figsize=(8, 6))
@@ -404,7 +406,7 @@ def preprocessed():
                plt.axis('off')
                plt.title('Classification Map (PCA + SVM)')
                plt.savefig(UPLOAD_FOLDER + "/output/Predicted_image.png")
-               '''
+               
               
                              
             prdict(clmap)
@@ -413,6 +415,7 @@ def preprocessed():
             y = 'Crop Classification is Completed '
             return render_template('preprocessing.html',a=a, b=b, c=c, d=d, i=i, j=j, k=k, l=l, m=m, n=n, o=o, p=p, q=q, r=r, s=s, t=t, u=u, x=x, y=y)
             #return a
+            '''
         return render_template("home.html")
     
 if __name__ == "__main__":
