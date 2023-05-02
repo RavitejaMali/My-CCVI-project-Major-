@@ -172,7 +172,7 @@ def save_image_to_s3(image_data,filename):
  s3_client.ipload_fileobj(
   image_data,
   ccvioutputfolder,
-  filename)
+  'filename.png')
 
 
 @app.route("/")
