@@ -24,6 +24,18 @@ import io
 
 
 
+s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
+                  aws_secret_access_key='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')
+
+
+def save_image_to_s3(image_data,filename):
+ s3_client.ipload_fileobj(
+  image_data,
+  ccvioutputfolder,
+  'filename.png')
+
+
+
 
 def plot_band(dataset):
     plt.figure(figsize=(8, 6))
@@ -165,15 +177,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Trail Code Here
 
-s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC4TN4TL5A',
-                  aws_secret_access_key='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')
 
-
-def save_image_to_s3(image_data,filename):
- s3_client.ipload_fileobj(
-  image_data,
-  ccvioutputfolder,
-  'filename.png')
 
 
 @app.route("/")
