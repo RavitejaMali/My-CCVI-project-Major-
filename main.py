@@ -24,6 +24,17 @@ import io
 
 
 
+lambda_client = boto3.client('lambda')
+
+function_name = 'ServerFunction'
+timeout = 120
+
+response = lambda_client.update_function_configuration(
+    FunctionName=function_name,
+    Timeout=timeout
+)
+
+
 s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC2C6FFBW4',
                   aws_secret_access_key='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')
 
