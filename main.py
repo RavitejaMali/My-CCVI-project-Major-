@@ -413,9 +413,10 @@ def preprocessed():
             
             x = 'Predicted Satellite Image is saved in output Folder'
             y = 'Crop Classification is Completed '
+            '''
             return render_template('preprocessing.html',a=a, b=b, c=c, d=d, i=i, j=j, k=k, l=l, m=m, n=n, o=o, p=p, q=q, r=r, s=s, t=t, u=u, x=x, y=y)
             #return a
-            '''
+            
         return render_template("home.html")
     
 if __name__ == "__main__":
