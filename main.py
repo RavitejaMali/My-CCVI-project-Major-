@@ -38,6 +38,16 @@ def save_image_to_s3(image_data,filename,bucket_name):
 ccvioutputfolder='ccvioutputfolder'
 
 
+download_dir='downloads/'
+
+objects=s3.list_objects_v2(Bucket=ccvioutputfolder)['Contents']
+
+for obj in objects:
+    file_name = obj['Key']
+    file_path = os.path.join(download_dir, file_name)
+    s3.download_file(ccvioutputfolder, file_name, file_path)
+
+
 def plot_band(dataset):
     plt.figure(figsize=(8, 6))
     band_no = np.random.randint(dataset.shape[2])
