@@ -29,11 +29,13 @@ s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC2C6FFBW4',
                   aws_secret_access_key='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')
 
 
-for obj in objects:
-    file_name = obj['Key']
-    file_path = os.path.join(download_dir, file_name)
-    s3.download_file(ccvioutputfolder, file_name, file_path)
+def save_image_to_s3(image_data,filename,bucket_name):
+ s3.upload_fileobj(
+  image_data,
+  bucket_name,
+  filename)
 
+ccvioutputfolder='ccvioutputfolder'
 
 def plot_band(dataset):
     plt.figure(figsize=(8, 6))
