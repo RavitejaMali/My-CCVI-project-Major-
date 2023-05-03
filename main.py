@@ -300,6 +300,8 @@ def preprocessed():
             m = 'Plot of NDII is saved in Output Folder'
             n = 'Plot of MSI is saved in Output Folder'
             o = 'Vegetation Indices Processing is Completed'
+            
+            '''
             def extract_pixels(dataset, ground_truth):
                 df = pd.DataFrame()
                 for i in tqdm(range(dataset.shape[2])):
@@ -318,12 +320,6 @@ def preprocessed():
             print(X.shape)
             print(y.shape)
             #Actual Code
-            '''
-            pca = PCA(n_components = 150)
-            principalComponents = pca.fit_transform(X)
-            ev=pca.explained_variance_ratio_
-            '''           
-            # trail code 1
             
             n_components = dataset.shape[2] - 50
             pca = PCA(n_components=n_components)
@@ -350,7 +346,7 @@ def preprocessed():
             print('Test 2')
             #y_pred = svm.predict(X_test)
             r = 'Crop Classification Model is Started'
-            '''
+            
             from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
             print(f'Accuracy: {accuracy_score(y_test, y_pred)}%')
             acc = accuracy_score(y_test, y_pred) * 100
@@ -414,7 +410,7 @@ def preprocessed():
             x = 'Predicted Satellite Image is saved in output Folder'
             y = 'Crop Classification is Completed '
             '''
-            return render_template('preprocessing.html',a=a, b=b, c=c, d=d, i=i, j=j, k=k, l=l, m=m, n=n, o=o, p=p, q=q, r=r, s=s, t=t, u=u, x=x, y=y)
+            return render_template('preprocessing.html',a=a, b=b, c=c, d=d, i=i, j=j, k=k, l=l, m=m, n=n, o=o)
             #return a
             
         return render_template("home.html")
