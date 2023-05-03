@@ -413,7 +413,18 @@ def preprocessed():
             #return a
             
         return render_template("home.html")
-    
+       
+def download_folder():
+    bucket_contents = s3.list_objects_v2(Bucket=ccvioutputfolder)
+    for item in bucket_contents['Contents']:
+        file_path = item['Key']
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+        s3.download_file(ccvioutputfolder, file_path, file_path)        
+
+download_folder()
+
+
 if __name__ == "__main__":
     #url="http://localhost:5000/"
     #url = "https://www.google.com"
