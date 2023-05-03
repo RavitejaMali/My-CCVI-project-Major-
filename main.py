@@ -29,19 +29,6 @@ s3 = boto3.client('s3', aws_access_key_id='AKIAZOJP7WKC2C6FFBW4',
                   aws_secret_access_key='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')
 
 
-def save_image_to_s3(image_data,filename,bucket_name):
- s3.upload_fileobj(
-  image_data,
-  bucket_name,
-  filename)
-
-ccvioutputfolder='ccvioutputfolder'
-
-
-download_dir = os.path.join(os.path.expanduser("~"), "my_downloads")
-
-objects=s3.list_objects_v2(Bucket=ccvioutputfolder)['Contents']
-
 for obj in objects:
     file_name = obj['Key']
     file_path = os.path.join(download_dir, file_name)
