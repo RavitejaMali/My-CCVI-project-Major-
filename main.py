@@ -38,7 +38,7 @@ def save_image_to_s3(image_data,filename,bucket_name):
 ccvioutputfolder='ccvioutputfolder'
 
 
-download_dir='downloads/'
+download_dir = os.path.join(os.path.expanduser("~"), "my_downloads")
 
 objects=s3.list_objects_v2(Bucket=ccvioutputfolder)['Contents']
 
